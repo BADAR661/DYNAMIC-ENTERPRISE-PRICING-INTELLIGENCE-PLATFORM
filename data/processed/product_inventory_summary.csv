@@ -1,0 +1,13 @@
+product_id,average_selling_price,average_quantity_sold,total_units_sold,current_inventory,inventory_health
+P001,1044.06,3.23,129,120,Healthy
+P002,1545.08,2.69,175,80,Healthy
+P003,311.02,3.06,162,250,Healthy
+P004,2534.06,2.91,137,45,Low
+P005,3646.86,2.79,173,30,Low
+P006,1250.18,3.2,147,110,Healthy
+P007,2300.82,3.11,143,60,Healthy
+P008,941.04,2.83,136,95,Healthy
+P009,716.66,3.42,154,150,Healthy
+P010,1835.69,2.93,132,70,Healthy
+P011,1648.7,3.08,120,85,Healthy
+P012,814.99,3.19,204,65,Healthy

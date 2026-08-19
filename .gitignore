@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Local environments
+.venv/
+.venv-*/
+venv/
+env/
+.env
+.env.*
+!.env.example
+
+# Local IDE and OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Runtime and generated data
+data/*.db
+mlruns/
+train_output.txt
+
+# Build and tooling output
+*.log
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Docker overrides
+docker-compose.override.yml

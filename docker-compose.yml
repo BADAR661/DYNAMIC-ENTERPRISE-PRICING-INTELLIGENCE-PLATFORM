@@ -1,0 +1,68 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    command: uvicorn backend.main:app --host 0.0.0.0 --port 8000
+
+    environment:
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+
+    ports:
+      - "8000:8000"
+
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "python",
+          "-c",
+          "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"
+        ]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+
+    volumes:
+      - ./data:/app/data
+      - ./models:/app/models
+      - ./mlruns:/app/mlruns
+
+    depends_on:
+      redis:
+        condition: service_healthy
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    command: streamlit run frontend/app.py --server.address=0.0.0.0 --server.port=8501 --server.headless=true
+
+    environment:
+      API_BASE_URL: http://backend:8000
+
+    ports:
+      - "8501:8501"
+
+    depends_on:
+      backend:
+        condition: service_healthy
+
+  redis:
+    image: redis:7-alpine
+
+    volumes:
+      - redis_data:/data
+
+    healthcheck:
+      test:
+        ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  redis_data:

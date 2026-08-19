@@ -1,0 +1,14 @@
+fastapi
+uvicorn[standard]
+pydantic-settings
+sqlalchemy
+pandas
+numpy
+scikit-learn
+xgboost==2.1.4
+joblib
+requests
+streamlit
+redis
+shap
+lime
